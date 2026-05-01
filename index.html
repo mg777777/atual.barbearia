@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atual Barbearia | Santos - SP</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050505;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 18px 8%;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+
+    header h2 {
+      font-size: 25px;
+      letter-spacing: 1px;
+    }
+
+    header span {
+      color: #e63946;
+    }
+
+    nav a {
+      color: #ddd;
+      margin-left: 22px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #e63946;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)),
+        url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 120px 8% 70px;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(230,57,70,0.15);
+      border: 1px solid rgba(230,57,70,0.45);
+      color: #fff;
+      padding: 9px 16px;
+      border-radius: 30px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #e63946;
+    }
+
+    .hero p {
+      color: #ddd;
+      font-size: 20px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #e63946;
+      color: #fff;
+      padding: 14px 25px;
+      border-radius: 40px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 6px;
+      box-shadow: 0 10px 25px rgba(230,57,70,0.35);
+    }
+
+    .btn:hover {
+      background: #ff4d5a;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #fff;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    section {
+      padding: 85px 8%;
+    }
+
+    .titulo {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .titulo small {
+      color: #e63946;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .titulo h2 {
+      font-size: 38px;
+      margin-top: 10px;
+    }
+
+    .sobre {
+      max-width: 950px;
+      margin: auto;
+      text-align: center;
+      color: #cfcfcf;
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+      margin-top: 45px;
+    }
+
+    .card {
+      background: #101010;
+      border: 1px solid #242424;
+      padding: 30px;
+      border-radius: 22px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #e63946;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: #fff;
+      font-size: 23px;
+    }
+
+    .card p {
+      color: #bbb;
+      line-height: 1.7;
+    }
+
+    .agendamento {
+      background: linear-gradient(180deg, #050505, #101010);
+    }
+
+    .form-box {
+      max-width: 760px;
+      margin: auto;
+      background: #101010;
+      border: 1px solid #252525;
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .campo {
+      margin-bottom: 18px;
+    }
+
+    .campo label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .campo input,
+    .campo select {
+      width: 100%;
+      padding: 15px;
+      background: #050505;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 14px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .campo input:focus,
+    .campo select:focus {
+      border-color: #e63946;
+    }
+
+    .btn-full {
+      width: 100%;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    .info-box {
+      background: #101010;
+      border: 1px solid #242424;
+      padding: 30px;
+      border-radius: 22px;
+      text-align: center;
+    }
+
+    .info-box h3 {
+      color: #e63946;
+      margin-bottom: 12px;
+    }
+
+    .info-box p {
+      color: #cfcfcf;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: #000;
+      border-top: 1px solid #222;
+      padding: 45px 8% 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 35px;
+      margin-bottom: 30px;
+    }
+
+    footer h3 {
+      margin-bottom: 12px;
+    }
+
+    footer p,
+    footer a {
+      color: #aaa;
+      line-height: 1.8;
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #222;
+      padding-top: 20px;
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 62px;
+      height: 62px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      z-index: 999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        text-align: center;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>Atual <span>Barbearia</span></h2>
+
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#agendamento">Agendar</a>
+      <a href="#informacoes">Informações</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="badge">Barbearia tradicional em Santos</div>
+
+      <h1>Atual <span>Barbearia</span></h1>
+
+      <p>
+        Há mais de 30 anos cuidando do seu estilo com atendimento de qualidade,
+        tradição e profissionalismo para todas as idades.
+      </p>
+
+      <a class="btn" href="#agendamento">Agendar horário</a>
+      <a class="btn btn-outline" href="https://maps.app.goo.gl/rzUKjxdyPGP1b7gX7?g_st=aw" target="_blank">
+        Ver localização
+      </a>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="titulo">
+      <small>Sobre nós</small>
+      <h2>Tradição, estilo e confiança</h2>
+    </div>
+
+    <div class="sobre">
+      <p>
+        A Atual Barbearia é uma barbearia tradicional localizada em Santos,
+        com mais de 30 anos de história. Ao longo dos anos, conquistou a confiança
+        dos clientes oferecendo atendimento de qualidade, cuidado em cada detalhe
+        e um ambiente simples, confortável e profissional.
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>+30 anos</h3>
+        <p>Experiência e tradição no atendimento em Santos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Todas as idades</h3>
+        <p>Atendimento para crianças, jovens e adultos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Profissionalismo</h3>
+        <p>Cuidado, respeito e atenção em cada atendimento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="agendamento" id="agendamento">
+    <div class="titulo">
+      <small>Agendamento</small>
+      <h2>Escolha seu horário</h2>
+    </div>
+
+    <div class="form-box">
+      <div class="grid">
+        <div class="campo">
+          <label for="nome">Seu nome</label>
+          <input id="nome" type="text" placeholder="Digite seu nome">
+        </div>
+
+        <div class="campo">
+          <label for="servico">Serviço desejado</label>
+          <select id="servico">
+            <option value="">Selecione</option>
+            <option>Corte masculino</option>
+            <option>Barba</option>
+            <option>Corte + barba</option>
+            <option>Corte infantil</option>
+            <option>Acabamento</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="campo">
+          <label for="dia">Dia da semana</label>
+          <select id="dia">
+            <option value="">Selecione</option>
+            <option>Terça-feira</option>
+            <option>Quarta-feira</option>
+            <option>Quinta-feira</option>
+            <option>Sexta-feira</option>
+            <option>Sábado</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="horario">Horário</label>
+          <select id="horario">
+            <option value="">Selecione</option>
+            <option>08:30</option>
+            <option>09:00</option>
+            <option>09:30</option>
+            <option>10:00</option>
+            <option>10:30</option>
+            <option>11:00</option>
+            <option>11:30</option>
+            <option>12:00</option>
+            <option>13:00</option>
+            <option>13:30</option>
+            <option>14:00</option>
+            <option>14:30</option>
+            <option>15:00</option>
+            <option>15:30</option>
+            <option>16:00</option>
+            <option>16:30</option>
+            <option>17:00</option>
+            <option>17:30</option>
+            <option>18:00</option>
+            <option>18:30</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-full" onclick="agendarWhatsApp()">
+        Confirmar pelo WhatsApp
+      </button>
+    </div>
+  </section>
+
+  <section id="informacoes">
+    <div class="titulo">
+      <small>Informações</small>
+      <h2>Onde estamos</h2>
+    </div>
+
+    <div class="info">
+      <div class="info-box">
+        <h3>Endereço</h3>
+        <p>Rua Barão de Paranapiacaba, 104<br>Santos - SP</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Funcionamento</h3>
+        <p>Terça a sábado<br>08:30 às 19:00</p>
+      </div>
+
+      <div class="info-box">
+        <h3>WhatsApp</h3>
+        <p>(13) 99777-6196</p>
+        <a class="btn" href="https://wa.me/5513997776196" target="_blank">Chamar agora</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Atual Barbearia</h3>
+        <p>
+          Tradição, estilo e qualidade há mais de 30 anos em Santos.
+          Atendimento para todas as idades.
+        </p>
+      </div>
+
+      <div>
+        <h3>Links</h3>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#agendamento">Agendar</a>
+      </div>
+
+      <div>
+        <h3>Horário</h3>
+        <p>Terça a sábado</p>
+        <p>08:30 às 19:00</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Atual Barbearia • Desenvolvido por Miguel Santiago
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/5513997776196" target="_blank">
+    ☎
+  </a>
+
+  <script>
+    function agendarWhatsApp() {
+      const nome = document.getElementById("nome").value.trim();
+      const servico = document.getElementById("servico").value;
+      const dia = document.getElementById("dia").value;
+      const horario = document.getElementById("horario").value;
+
+      if (!nome || !servico || !dia || !horario) {
+        alert("Preencha nome, serviço, dia e horário antes de agendar.");
+        return;
+      }
+
+      const mensagem =
+        `Olá! Meu nome é ${nome}. Gostaria de agendar um horário na Atual Barbearia.%0A%0A` +
+        `Serviço: ${servico}%0A` +
+        `Dia: ${dia}%0A` +
+        `Horário: ${horario}`;
+
+      window.open(`https://wa.me/5513997776196?text=${mensagem}`, "_blank");
+    }
+  </script>
+
+</body>
+</html>
